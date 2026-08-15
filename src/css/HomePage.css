@@ -15,10 +15,19 @@
   align-items: center;
   padding: 22px 30px 30px;
   overflow: hidden;
-  background-image: linear-gradient(90deg, rgba(8, 8, 8, 0.82) 0%, rgba(8, 8, 8, 0.46) 40%, rgba(8, 8, 8, 0.12) 100%), url('../assets/HomePageAssets/Mj_header.jpg');
-  background-size: cover;
-  background-position: center center;
-  background-repeat: no-repeat;
+}
+
+.hero-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(8, 8, 8, 0.82) 0%, rgba(8, 8, 8, 0.46) 40%, rgba(8, 8, 8, 0.14) 100%);
+  z-index: 1;
+}
+
+.hero-slideshow {
+  position: absolute;
+  inset: 0;
 }
 
 .hero-slide {
@@ -37,7 +46,7 @@
 
 .hero-copy {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   max-width: min(620px, calc(100vw - 60px));
   display: flex;
   flex-direction: column;

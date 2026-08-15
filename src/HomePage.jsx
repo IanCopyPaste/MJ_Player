@@ -3,16 +3,21 @@ import { useEffect, useState } from 'react';
 import Header from './components/Header';
 import ButtonHeeHee from './components/ButtonHeeHee';
 import Mj_header from './assets/HomePageAssets/Mj_header.jpg';
+import Mj_header2 from './assets/HomePageAssets/Mj_header2.jpg';
+import Mj_header3 from './assets/HomePageAssets/Mj_header3.jpg';
+import Mj_header4 from './assets/HomePageAssets/Mj_header4.jpg';
 
 //css
 import './css/HomePage.css';
 
 const typingWords = ['Legend', 'Performer', 'Icon'];
+const heroImages = [Mj_header, Mj_header2, Mj_header3, Mj_header4];
 
 function HomePage({ props }) {
     const [wordIndex, setWordIndex] = useState(0);
     const [displayText, setDisplayText] = useState('');
     const [isDeleting, setIsDeleting] = useState(false);
+    const [activeSlide, setActiveSlide] = useState(0);
 
     useEffect(() => {
         const currentWord = typingWords[wordIndex];
@@ -42,12 +47,30 @@ function HomePage({ props }) {
         return () => clearTimeout(timeout);
     }, [displayText, isDeleting, wordIndex]);
 
+    useEffect(() => {
+        const slideTimer = setInterval(() => {
+            setActiveSlide((prev) => (prev + 1) % heroImages.length);
+        }, 2000);
+
+        return () => clearInterval(slideTimer);
+    }, []);
+
     return (
         <>
             <Header />
 
             <main className="home-page">
                 <section className="hero-section">
+                    <div className="hero-slideshow" aria-label="Michael Jackson slideshow">
+                        {heroImages.map((image, index) => (
+                            <div
+                                key={image}
+                                className={`hero-slide ${index === activeSlide ? 'active' : ''}`}
+                                style={{ backgroundImage: `url(${image})` }}
+                            />
+                        ))}
+                    </div>
+
                     <div className="hero-copy">
                         <p className="eyebrow">The King of Pop</p>
                         <h1>Michael Jackson</h1>
