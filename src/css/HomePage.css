@@ -10,7 +10,7 @@
 .hero-section {
   position: relative;
   width: 100%;
-  min-height: calc(100vh - 80px);
+  min-height: 100vh;
   display: flex;
   align-items: center;
   padding: 22px 30px 30px;

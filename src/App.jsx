@@ -2,6 +2,7 @@ import { Routes, Route } from 'react-router'
 import './css/App.css'
 import HomePage from './HomePage.jsx';
 import MusicPage from './MusicPage.jsx';
+import Footer from './components/Footer.jsx';
 
 const songs = [
     {

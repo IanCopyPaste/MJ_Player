@@ -1,17 +1,19 @@
 //component
 import { useEffect, useState } from 'react';
 import Header from './components/Header';
+import Footer from './components/Footer';
 import ButtonHeeHee from './components/ButtonHeeHee';
 import Mj_header from './assets/HomePageAssets/Mj_header.jpg';
 import Mj_header2 from './assets/HomePageAssets/Mj_header2.jpg';
 import Mj_header3 from './assets/HomePageAssets/Mj_header3.jpg';
 import Mj_header4 from './assets/HomePageAssets/Mj_header4.jpg';
+import Mj_header5 from './assets/HomePageAssets/Mj_header5.jpg';
 
 //css
 import './css/HomePage.css';
 
 const typingWords = ['Legend', 'Performer', 'Icon'];
-const heroImages = [Mj_header, Mj_header2, Mj_header3, Mj_header4];
+const heroImages = [Mj_header5,Mj_header, Mj_header2, Mj_header3, Mj_header4];
 
 function HomePage({ props }) {
     const [wordIndex, setWordIndex] = useState(0);
@@ -50,7 +52,7 @@ function HomePage({ props }) {
     useEffect(() => {
         const slideTimer = setInterval(() => {
             setActiveSlide((prev) => (prev + 1) % heroImages.length);
-        }, 2000);
+        }, 3000);
 
         return () => clearInterval(slideTimer);
     }, []);
@@ -165,6 +167,7 @@ function HomePage({ props }) {
                     </div>
                 </section>
             </main>
+            <Footer />
         </>
     );
 }
