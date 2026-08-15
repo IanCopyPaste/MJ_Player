@@ -180,14 +180,16 @@ function HomePage({ props }) {
                     onNext={() => goToTrack(1)}
                 />
 
-                <button
-                    type="button"
-                    className="floating-player-button"
-                    onClick={() => setIsPlayerOpen((prev) => !prev)}
-                    aria-label="Toggle music player"
-                >
-                    <img src={Mj_header5} alt="Open music player" />
-                </button>
+                {!isPlayerOpen && (
+                    <button
+                        type="button"
+                        className="floating-player-button"
+                        onClick={() => setIsPlayerOpen(true)}
+                        aria-label="Toggle music player"
+                    >
+                        <img src={Mj_header5} alt="Open music player" />
+                    </button>
+                )}
 
                 <section className="hero-section">
                     <div className="hero-slideshow" aria-label="Michael Jackson slideshow">
