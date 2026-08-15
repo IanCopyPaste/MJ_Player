@@ -23,8 +23,8 @@
   height: 80px;
 
   background: rgba(8, 8, 8, 0.26);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
 
   border: none;
   border-bottom: none;
