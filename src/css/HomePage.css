@@ -15,6 +15,10 @@
   align-items: center;
   padding: 22px 30px 30px;
   overflow: hidden;
+  background-image: linear-gradient(90deg, rgba(8, 8, 8, 0.82) 0%, rgba(8, 8, 8, 0.46) 40%, rgba(8, 8, 8, 0.12) 100%), url('../assets/HomePageAssets/Mj_header.jpg');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
 }
 
 .hero-slide {
@@ -184,6 +188,10 @@
   display: none;
 }
 
+.mj_header {
+  display: none;
+}
+
 .story-section,
 .featured-section {
   max-width: 1200px;
@@ -245,7 +253,6 @@
 
 @media (max-width: 900px) {
   .hero-section {
-    grid-template-columns: 1fr;
     padding-top: 50px;
   }
 
