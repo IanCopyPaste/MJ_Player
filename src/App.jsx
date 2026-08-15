@@ -24,7 +24,7 @@ const songs = [
         title: 'Thriller',
         album: 'Thriller',
         release_date: 'January 23, 1984',
-        path: '/songs/thriller/thriller.m4a'
+        path: '/songs/thriller/thriller.mp3'
     },
     {
         song_id: 'r5v2c8xh',
