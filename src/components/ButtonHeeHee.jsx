@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
-import "./ButtonHeeHee.css";
+import "./css/ButtonHeeHee.css";
 
 function DisplayButton({ filePath, title, newSongPlaying }) {
     function playSound(file) {
@@ -17,18 +17,21 @@ function ButtonHeeHee({ btnProps }) {
     const [currSong, newSong] = useState('')
     const srcRef = useRef(null);
 
-    useEffect(()=>{
-        if(currSong && srcRef.current){
+    useEffect(() => {
+        if (currSong && srcRef.current) {
             srcRef.current.load();
             srcRef.current.play();
         }
-    });
+    }, [currSong]);
     return (
         <>
-            {btnProps.map((e, i) => (<DisplayButton key={i} filePath={e.path} title={e.title} newSongPlaying={newSong} />))}
+            <div className='song-buttons'>
+                {btnProps.map((e, i) => (<DisplayButton key={i} filePath={e.path} title={e.title} newSongPlaying={newSong} />))}
+            </div>
             <div className='player'>
-                <audio src={currSong ? currSong : null} ref={srcRef} controls/>
-                {console.log('output')}
+                <div className='audio-shell'>
+                    <audio className='audio-player' src={currSong ? currSong : null} ref={srcRef} controls />
+                </div>
             </div>  
         </>
     );
