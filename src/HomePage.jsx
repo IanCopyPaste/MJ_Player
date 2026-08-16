@@ -1,32 +1,23 @@
-//component
 import { useEffect, useState } from 'react';
 import Header from './components/Header';
 import Footer from './components/Footer';
-import PlayerModal from './components/PlayerModal';
 import ButtonHeeHee from './components/ButtonHeeHee';
 import Mj_header from './assets/HomePageAssets/Mj_header.jpg';
 import Mj_header2 from './assets/HomePageAssets/Mj_header2.jpg';
 import Mj_header3 from './assets/HomePageAssets/Mj_header3.jpg';
 import Mj_header4 from './assets/HomePageAssets/Mj_header4.jpg';
 import Mj_header5 from './assets/HomePageAssets/Mj_header5.jpg';
-
-//css
+import playMusicIcon from './assets/HomePageAssets/playMusic.png';
 import './css/HomePage.css';
 
 const typingWords = ['Legend', 'Performer', 'Icon'];
 const heroImages = [Mj_header5, Mj_header, Mj_header2, Mj_header3, Mj_header4];
 
-function HomePage({ props }) {
+function HomePage({ props, player, onSelectTrack, setPlayerOpen }) {
     const [wordIndex, setWordIndex] = useState(0);
     const [displayText, setDisplayText] = useState('');
     const [isDeleting, setIsDeleting] = useState(false);
     const [activeSlide, setActiveSlide] = useState(0);
-    const [isPlayerOpen, setIsPlayerOpen] = useState(false);
-    const [nowPlayingTitle, setNowPlayingTitle] = useState('Michael Jackson');
-    const [currentTrackIndex, setCurrentTrackIndex] = useState(-1);
-    const [isAudioPlaying, setIsAudioPlaying] = useState(false);
-    const [currentTime, setCurrentTime] = useState(0);
-    const [duration, setDuration] = useState(0);
 
     useEffect(() => {
         const currentWord = typingWords[wordIndex];
@@ -64,130 +55,19 @@ function HomePage({ props }) {
         return () => clearInterval(slideTimer);
     }, []);
 
-    useEffect(() => {
-        const audio = document.querySelector('.audio-player');
-
-        if (!audio) return undefined;
-
-        const syncMetadata = () => {
-            setDuration(Number.isFinite(audio.duration) ? audio.duration : 0);
-            setCurrentTime(audio.currentTime || 0);
-        };
-
-        const syncTime = () => setCurrentTime(audio.currentTime || 0);
-        const syncPlayback = () => setIsAudioPlaying(!audio.paused);
-
-        audio.addEventListener('loadedmetadata', syncMetadata);
-        audio.addEventListener('timeupdate', syncTime);
-        audio.addEventListener('play', syncPlayback);
-        audio.addEventListener('pause', syncPlayback);
-        audio.addEventListener('ended', syncPlayback);
-
-        return () => {
-            audio.removeEventListener('loadedmetadata', syncMetadata);
-            audio.removeEventListener('timeupdate', syncTime);
-            audio.removeEventListener('play', syncPlayback);
-            audio.removeEventListener('pause', syncPlayback);
-            audio.removeEventListener('ended', syncPlayback);
-        };
-    }, []);
-
-    useEffect(() => {
-        const handleSongClick = (event) => {
-            const songButton = event.target.closest('.btnTitle');
-
-            if (!songButton) return;
-
-            const title = songButton.textContent?.trim() || 'Michael Jackson';
-            const nextIndex = (props || []).findIndex((item) => item.title === title);
-
-            if (nextIndex !== -1) {
-                setCurrentTrackIndex(nextIndex);
-            }
-
-            setNowPlayingTitle(title);
-            setIsPlayerOpen(true);
-            setIsAudioPlaying(true);
-        };
-
-        document.addEventListener('click', handleSongClick);
-
-        return () => document.removeEventListener('click', handleSongClick);
-    }, [props]);
-
-    const goToTrack = (direction) => {
-        const songList = props || [];
-
-        if (!songList.length) return;
-
-        const safeIndex = currentTrackIndex >= 0 ? currentTrackIndex : 0;
-        const nextIndex = (safeIndex + direction + songList.length) % songList.length;
-        const nextSong = songList[nextIndex];
-        const audio = document.querySelector('.audio-player');
-
-        if (!audio || !nextSong) return;
-
-        audio.src = nextSong.path;
-        audio.load();
-        audio.play();
-
-        setCurrentTrackIndex(nextIndex);
-        setNowPlayingTitle(nextSong.title);
-        setCurrentTime(0);
-        setDuration(0);
-        setIsAudioPlaying(true);
-        setIsPlayerOpen(true);
-    };
-
-    const handleTogglePlayback = () => {
-        const audio = document.querySelector('.audio-player');
-
-        if (!audio) return;
-
-        if (audio.paused) {
-            audio.play();
-            setIsAudioPlaying(true);
-        } else {
-            audio.pause();
-            setIsAudioPlaying(false);
-        }
-    };
-
-    const handleSeek = (time) => {
-        const audio = document.querySelector('.audio-player');
-
-        if (!audio) return;
-
-        audio.currentTime = time;
-        setCurrentTime(time);
-    };
-
     return (
         <>
             <Header />
 
             <main className="home-page">
-                <PlayerModal
-                    isOpen={isPlayerOpen}
-                    title={nowPlayingTitle}
-                    isPlaying={isAudioPlaying}
-                    onToggle={handleTogglePlayback}
-                    onClose={() => setIsPlayerOpen(false)}
-                    currentTime={currentTime}
-                    duration={duration}
-                    onSeek={handleSeek}
-                    onPrevious={() => goToTrack(-1)}
-                    onNext={() => goToTrack(1)}
-                />
-
-                {!isPlayerOpen && (
+                {!player.isOpen && (
                     <button
                         type="button"
                         className="floating-player-button"
-                        onClick={() => setIsPlayerOpen(true)}
+                        onClick={() => setPlayerOpen(true)}
                         aria-label="Toggle music player"
                     >
-                        <img src={Mj_header5} alt="Open music player" />
+                        <img src={playMusicIcon} alt="Open music player" />
                     </button>
                 )}
 
@@ -292,7 +172,7 @@ function HomePage({ props }) {
                     </div>
 
                     <div className="featured-player">
-                        <ButtonHeeHee btnProps={props} />
+                        <ButtonHeeHee btnProps={props} onSelectTrack={onSelectTrack} />
                     </div>
                 </section>
             </main>

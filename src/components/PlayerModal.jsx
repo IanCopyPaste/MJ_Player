@@ -1,5 +1,5 @@
 import './css/PlayerModal.css';
-import Mj_header5 from '../assets/HomePageAssets/Mj_header5.jpg';
+import playMusicIcon from '../assets/HomePageAssets/playMusic.png';
 
 const formatTime = (value) => {
     if (!Number.isFinite(value) || value <= 0) return '0:00';
@@ -34,7 +34,7 @@ function PlayerModal({
 
                 <div className="music-modal-header">
                     <div className="music-modal-icon-wrap">
-                        <img src={Mj_header5} alt="Now playing icon" />
+                        <img src={playMusicIcon} alt="Now playing icon" />
                     </div>
 
                     <div className="music-modal-info">

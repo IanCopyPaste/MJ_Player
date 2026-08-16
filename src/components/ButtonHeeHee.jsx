@@ -1,39 +1,22 @@
-import { useState, useEffect, useRef } from 'react'
-import "./css/ButtonHeeHee.css";
+import './css/ButtonHeeHee.css';
 
-function DisplayButton({ filePath, title, newSongPlaying }) {
-    function playSound(file) {
-        newSongPlaying(file);
-        console.log(file);
-    }
+function DisplayButton({ song, onSelectTrack }) {
     return (
-        <>
-            <button className='btnTitle' onClick={() => playSound(filePath)}>{title}</button>
-        </>
+        <button className='btnTitle' onClick={() => onSelectTrack(song)}>{song.title}</button>
     );
 }
 
-function ButtonHeeHee({ btnProps }) {
-    const [currSong, newSong] = useState('')
-    const srcRef = useRef(null);
-
-    useEffect(() => {
-        if (currSong && srcRef.current) {
-            srcRef.current.load();
-            srcRef.current.play();
-        }
-    }, [currSong]);
+function ButtonHeeHee({ btnProps, onSelectTrack }) {
     return (
-        <>
-            <div className='song-buttons'>
-                {btnProps.map((e, i) => (<DisplayButton key={i} filePath={e.path} title={e.title} newSongPlaying={newSong} />))}
-            </div>
-            <div className='player'>
-                <div className='audio-shell'>
-                    <audio className='audio-player' src={currSong ? currSong : null} ref={srcRef} controls />
-                </div>
-            </div>  
-        </>
+        <div className='song-buttons'>
+            {btnProps.map((song, index) => (
+                <DisplayButton
+                    key={song.song_id || `${song.title}-${index}`}
+                    song={song}
+                    onSelectTrack={onSelectTrack || (() => {})}
+                />
+            ))}
+        </div>
     );
 }
 
