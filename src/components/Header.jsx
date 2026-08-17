@@ -34,13 +34,6 @@ function Header() {
           </NavLink>
 
           <NavLink
-            to="/music"
-            className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}
-          >
-            Music
-          </NavLink>
-
-          <NavLink
             to="/albums"
             className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}
           >
@@ -48,10 +41,10 @@ function Header() {
           </NavLink>
 
           <NavLink
-            to="/videos"
+            to="/awards"
             className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}
           >
-            Videos
+            Awards
           </NavLink>
 
           <NavLink
