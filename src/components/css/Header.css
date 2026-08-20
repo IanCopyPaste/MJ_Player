@@ -66,11 +66,6 @@
   justify-self: center;
 }
 
-.listen-button {
-  justify-self: end;
-}
-
-
 /* =========================
    LOGO
    ========================= */
@@ -171,41 +166,6 @@
 
 
 /* =========================
-   BUTTON
-   ========================= */
-
-.listen-button {
-  padding: 11px 20px;
-
-  background: var(--mj-red);
-
-  color: var(--mj-white);
-
-  border: 1px solid var(--mj-red);
-
-  font-size: 12px;
-  font-weight: 700;
-
-  letter-spacing: 1px;
-
-  cursor: pointer;
-
-  transition:
-    background 0.2s ease,
-    border-color 0.2s ease,
-    transform 0.2s ease;
-}
-
-.listen-button:hover {
-  background: var(--mj-bright-red);
-
-  border-color: var(--mj-gold);
-
-  transform: translateY(-2px);
-}
-
-
-/* =========================
    MOBILE
    ========================= */
 
@@ -230,7 +190,4 @@
     justify-content: center;
   }
 
-  .listen-button {
-    display: none;
-  }
 }

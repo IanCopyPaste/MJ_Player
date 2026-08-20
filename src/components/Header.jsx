@@ -55,11 +55,6 @@ function Header() {
           </NavLink>
         </nav>
 
-        {/* Right side button */}
-        <button className="listen-button">
-          Listen Now
-        </button>
-
       </div>
     </header>
   );

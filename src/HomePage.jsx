@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Mj_header from './assets/HomePageAssets/Mj_header.jpg';
@@ -9,7 +10,7 @@ import Mj_header5 from './assets/HomePageAssets/Mj_header5.jpg';
 import playMusicIcon from './assets/PlayerAssets/playMusic.png';
 import thrillerCover from './assets/AlbumImages/Thriller.jpg';
 import badCover from './assets/AlbumImages/Bad.jpg';
-import offTheWallCover from './assets/AlbumImages/Off The Wall.jpg';
+import offTheWallCover from './assets/AlbumImages/OffTheWall.jpg';
 import dangerousCover from './assets/AlbumImages/Dangerous.jpg';
 import invincibleCover from './assets/AlbumImages/Invincible.jpg';
 import './css/HomePage.css';
@@ -111,7 +112,7 @@ function HomePage({ player, setPlayerOpen }) {
                         </p>
 
                         <div className="hero-actions">
-                            <a href="#featured" className="primary-button">Listen now</a>
+                            <Link to="/albums" className="primary-button">Listen now</Link>
                             <a href="#story" className="secondary-button">Explore his story</a>
                         </div>
 
@@ -165,9 +166,9 @@ function HomePage({ player, setPlayerOpen }) {
 
                         <article className="feature-card">
                             <span className="feature-number">03</span>
-                            <h4>Global influence</h4>
-                            <p>
-                                He inspired artists, dancers, and fans around the world to dream
+                                <h4>Global influence</h4>
+                                <p>
+                                    He inspired artists, dancers, and fans around the world to dream
                                 bigger and perform with purpose.
                             </p>
                         </article>

@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Routes, Route } from 'react-router';
 import './css/App.css';
 import HomePage from './HomePage.jsx';
+import AlbumsPage from './AlbumsPage.jsx';
 import PlayerModal from './components/PlayerModal.jsx';
 import songs from '../songs.js'
 
@@ -159,6 +160,17 @@ function App() {
               onSeek={handleSeek}
               onPrevious={() => goToTrack(-1)}
               onNext={() => goToTrack(1)}
+              setPlayerOpen={setPlayerOpen}
+            />
+          }
+        />
+        <Route
+          path="albums"
+          element={
+            <AlbumsPage
+              songs={songs}
+              player={playerState}
+              onSelectTrack={selectTrack}
               setPlayerOpen={setPlayerOpen}
             />
           }
