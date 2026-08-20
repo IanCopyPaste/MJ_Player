@@ -15,6 +15,7 @@ function App() {
     isAudioPlaying: false,
     currentTime: 0,
     duration: 0,
+    volume: 1,
   });
 
   useEffect(() => {
@@ -114,6 +115,15 @@ function App() {
     setPlayerState((prev) => ({ ...prev, currentTime: time }));
   };
 
+  const handleVolumeChange = (volume) => {
+    const audio = audioRef.current;
+
+    if (!audio) return;
+
+    audio.volume = volume;
+    setPlayerState((prev) => ({ ...prev, volume }));
+  };
+
   const setPlayerOpen = (value) => {
     setPlayerState((prev) => ({ ...prev, isOpen: value }));
   };
@@ -131,6 +141,8 @@ function App() {
         currentTime={playerState.currentTime}
         duration={playerState.duration}
         onSeek={handleSeek}
+        volume={playerState.volume}
+        onVolumeChange={handleVolumeChange}
         onPrevious={() => goToTrack(-1)}
         onNext={() => goToTrack(1)}
       />

@@ -1,5 +1,8 @@
+import { useEffect, useState } from 'react';
 import './css/PlayerModal.css';
-import playMusicIcon from '../assets/HomePageAssets/playMusic.png';
+import playMusicIcon from '../assets/PlayerAssets/playMusic.png';
+import playIcon from '../assets/PlayerAssets/play.png';
+import pauseIcon from '../assets/PlayerAssets/pause.png';
 
 const formatTime = (value) => {
     if (!Number.isFinite(value) || value <= 0) return '0:00';
@@ -18,15 +21,38 @@ function PlayerModal({
     currentTime,
     duration,
     onSeek,
+    volume,
+    onVolumeChange,
     onPrevious,
     onNext,
 }) {
-    if (!isOpen) return null;
+    const [isMounted, setIsMounted] = useState(isOpen);
+
+    useEffect(() => {
+        if (isOpen) {
+            setIsMounted(true);
+            return undefined;
+        }
+
+        const closeTimer = setTimeout(() => setIsMounted(false), 220);
+        return () => clearTimeout(closeTimer);
+    }, [isOpen]);
+
+    if (!isMounted) return null;
 
     const progress = duration ? (currentTime / duration) * 100 : 0;
 
+    const handleVolumeWheel = (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        const change = event.deltaY < 0 ? 0.05 : -0.05;
+        const nextVolume = Math.min(1, Math.max(0, volume + change));
+
+        onVolumeChange(nextVolume);
+    };
+
     return (
-        <div className="music-modal-backdrop">
+        <div className={`music-modal-backdrop ${isOpen ? 'is-open' : 'is-closing'}`}>
             <div className="music-modal" role="dialog" aria-modal="true">
                 <button type="button" className="music-modal-close" onClick={onClose} aria-label="Close player">
                     ×
@@ -64,13 +90,31 @@ function PlayerModal({
                     <button type="button" className="music-modal-skip" onClick={onPrevious} aria-label="Previous song">
                         &lt;
                     </button>
-                    <button type="button" className="music-modal-toggle" onClick={onToggle}>
-                        {isPlaying ? 'Pause' : 'Play'}
+                    <button
+                        type="button"
+                        className="music-modal-toggle"
+                        onClick={onToggle}
+                        aria-label={isPlaying ? 'Pause music' : 'Play music'}
+                    >
+                        <img src={isPlaying ? pauseIcon : playIcon} alt="" aria-hidden="true" />
                     </button>
                     <button type="button" className="music-modal-skip" onClick={onNext} aria-label="Next song">
                         &gt;
                     </button>
                 </div>
+
+                <label className="music-modal-volume" onWheel={handleVolumeWheel}>
+                    <span>Volume</span>
+                    <input
+                        type="range"
+                        min="0"
+                        max="1"
+                        step="0.01"
+                        value={volume}
+                        onChange={(event) => onVolumeChange(Number(event.target.value))}
+                        aria-label="Adjust volume"
+                    />
+                </label>
             </div>
         </div>
     );

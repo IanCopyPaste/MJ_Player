@@ -3,6 +3,11 @@
   right: 24px;
   bottom: 24px;
   z-index: 1500;
+  animation: player-backdrop-in 220ms ease-out both;
+}
+
+.music-modal-backdrop.is-closing {
+  animation: player-backdrop-out 220ms ease-in both;
 }
 
 .music-modal {
@@ -13,6 +18,32 @@
   background: rgba(17, 17, 17, 0.96);
   border: 1px solid rgba(212, 175, 55, 0.35);
   box-shadow: 0 18px 36px rgba(0, 0, 0, 0.38);
+  transform-origin: bottom right;
+  animation: player-modal-in 220ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.music-modal-backdrop.is-closing .music-modal {
+  animation: player-modal-out 220ms ease-in both;
+}
+
+@keyframes player-backdrop-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes player-backdrop-out {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+@keyframes player-modal-in {
+  from { opacity: 0; transform: translateY(14px) scale(0.96); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes player-modal-out {
+  from { opacity: 1; transform: translateY(0) scale(1); }
+  to { opacity: 0; transform: translateY(10px) scale(0.96); }
 }
 
 .music-modal-close {
@@ -132,9 +163,37 @@
   color: #fff;
 }
 
+.music-modal-toggle img {
+  display: block;
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  margin: 0 auto;
+}
+
 .music-modal-skip:hover,
 .music-modal-toggle:hover {
   transform: translateY(-1px);
+}
+
+.music-modal-volume {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 16px;
+  overscroll-behavior: contain;
+  color: rgba(245, 245, 245, 0.76);
+  font-size: 0.72rem;
+}
+
+.music-modal-volume span {
+  min-width: 46px;
+}
+
+.music-modal-volume input[type='range'] {
+  flex: 1;
+  accent-color: #d4af37;
+  cursor: pointer;
 }
 
 .floating-player-button {

@@ -21,13 +21,22 @@
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(90deg, rgba(8, 8, 8, 0.82) 0%, rgba(8, 8, 8, 0.46) 40%, rgba(8, 8, 8, 0.14) 100%);
+  background: linear-gradient(90deg, rgba(8, 8, 8, 0.82) 0%, rgba(8, 8, 8, 0.46) 40%, rgba(8, 8, 8, 0.14) 100%),
+    linear-gradient(180deg, rgba(9, 9, 9, 0.08) 55%, rgba(9, 9, 9, 0.96) 100%);
   z-index: 1;
 }
 
 .hero-slideshow {
   position: absolute;
   inset: 0;
+}
+
+.hero-slideshow::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(180deg, transparent 58%, rgba(9, 9, 9, 0.22) 75%, #090909 100%);
 }
 
 .hero-slide {
@@ -253,11 +262,90 @@
   line-height: 1.7;
 }
 
-.featured-player {
-  padding: 28px;
-  border-radius: 24px;
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(212, 175, 55, 0.18);
+.album-rail {
+  display: flex;
+  gap: 18px;
+  overflow-x: auto;
+  padding: 4px 2px 18px;
+  scroll-snap-type: x mandatory;
+  scrollbar-color: #d4af37 rgba(255, 255, 255, 0.08);
+  scrollbar-width: thin;
+}
+
+.album-card {
+  flex: 0 0 214px;
+  overflow: hidden;
+  scroll-snap-align: start;
+  border: 1px solid rgba(212, 175, 55, 0.24);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.04);
+  box-shadow: 0 16px 30px rgba(0, 0, 0, 0.2);
+  transition: transform 0.25s ease, border-color 0.25s ease;
+}
+
+.album-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(212, 175, 55, 0.7);
+}
+
+.album-cover-wrap {
+  position: relative;
+  aspect-ratio: 1;
+  overflow: hidden;
+  background: #161616;
+}
+
+.album-cover-wrap img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.album-rank {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 1;
+  padding: 8px 10px;
+  border: 1px solid rgba(240, 214, 117, 0.7);
+  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.82);
+  color: #f0d675;
+  font-size: 1rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+}
+
+.album-details {
+  padding: 16px;
+}
+
+.album-label {
+  margin: 0 0 6px;
+  color: #d4af37;
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.album-details h4 {
+  margin: 0;
+  color: #f5f5f5;
+  font-size: 1.2rem;
+}
+
+.album-artist,
+.album-date {
+  margin: 6px 0 0;
+  color: rgba(245, 245, 245, 0.68);
+  font-size: 0.8rem;
+}
+
+.album-date {
+  color: rgba(245, 245, 245, 0.48);
 }
 
 .music-modal-backdrop {

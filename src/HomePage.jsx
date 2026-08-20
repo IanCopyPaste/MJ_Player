@@ -1,19 +1,30 @@
 import { useEffect, useState } from 'react';
 import Header from './components/Header';
 import Footer from './components/Footer';
-import ButtonHeeHee from './components/ButtonHeeHee';
 import Mj_header from './assets/HomePageAssets/Mj_header.jpg';
 import Mj_header2 from './assets/HomePageAssets/Mj_header2.jpg';
 import Mj_header3 from './assets/HomePageAssets/Mj_header3.jpg';
 import Mj_header4 from './assets/HomePageAssets/Mj_header4.jpg';
 import Mj_header5 from './assets/HomePageAssets/Mj_header5.jpg';
-import playMusicIcon from './assets/HomePageAssets/playMusic.png';
+import playMusicIcon from './assets/PlayerAssets/playMusic.png';
+import thrillerCover from './assets/AlbumImages/Thriller.jpg';
+import badCover from './assets/AlbumImages/Bad.jpg';
+import offTheWallCover from './assets/AlbumImages/Off The Wall.jpg';
+import dangerousCover from './assets/AlbumImages/Dangerous.jpg';
+import invincibleCover from './assets/AlbumImages/Invincible.jpg';
 import './css/HomePage.css';
 
 const typingWords = ['Legend', 'Performer', 'Icon'];
 const heroImages = [Mj_header5, Mj_header, Mj_header2, Mj_header3, Mj_header4];
+const topAlbums = [
+    { rank: '1st', title: 'Thriller', releaseDate: 'November 30, 1982', cover: thrillerCover },
+    { rank: '2nd', title: 'Bad', releaseDate: 'August 31, 1987', cover: badCover },
+    { rank: '3rd', title: 'Off the Wall', releaseDate: 'August 10, 1979', cover: offTheWallCover },
+    { rank: '4th', title: 'Dangerous', releaseDate: 'November 26, 1991', cover: dangerousCover },
+    { rank: '5th', title: 'Invincible', releaseDate: 'October 30, 2001', cover: invincibleCover },
+];
 
-function HomePage({ props, player, onSelectTrack, setPlayerOpen }) {
+function HomePage({ player, setPlayerOpen }) {
     const [wordIndex, setWordIndex] = useState(0);
     const [displayText, setDisplayText] = useState('');
     const [isDeleting, setIsDeleting] = useState(false);
@@ -166,13 +177,26 @@ function HomePage({ props, player, onSelectTrack, setPlayerOpen }) {
                 <section className="featured-section" id="featured">
                     <div className="section-heading inline-heading">
                         <div>
-                            <p className="eyebrow">Featured tracks</p>
-                            <h3>Start with the classics</h3>
+                            <p className="eyebrow">The essential collection</p>
+                            <h3>Top five albums</h3>
                         </div>
                     </div>
 
-                    <div className="featured-player">
-                        <ButtonHeeHee btnProps={props} onSelectTrack={onSelectTrack} />
+                    <div className="album-rail" aria-label="Top five Michael Jackson albums">
+                        {topAlbums.map((album) => (
+                            <article className="album-card" key={album.title}>
+                                <div className="album-cover-wrap">
+                                    <span className="album-rank">{album.rank}</span>
+                                    <img src={album.cover} alt={`${album.title} album cover`} />
+                                </div>
+                                <div className="album-details">
+                                    <p className="album-label">Album</p>
+                                    <h4>{album.title}</h4>
+                                    <p className="album-artist">Michael Jackson</p>
+                                    <p className="album-date">{album.releaseDate}</p>
+                                </div>
+                            </article>
+                        ))}
                     </div>
                 </section>
             </main>
