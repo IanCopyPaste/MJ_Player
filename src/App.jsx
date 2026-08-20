@@ -13,6 +13,7 @@ function App() {
     isOpen: false,
     currentTrackIndex: -1,
     nowPlayingTitle: 'Michael Jackson',
+    albumImage: '',
     isAudioPlaying: false,
     currentTime: 0,
     duration: 0,
@@ -74,6 +75,7 @@ function App() {
       ...prev,
       currentTrackIndex: index >= 0 ? index : prev.currentTrackIndex,
       nowPlayingTitle: song.title,
+      albumImage: song.album_image,
       isOpen: true,
       isAudioPlaying: true,
       currentTime: 0,
@@ -136,6 +138,7 @@ function App() {
       <PlayerModal
         isOpen={playerState.isOpen}
         title={playerState.nowPlayingTitle}
+        albumImage={playerState.albumImage}
         isPlaying={playerState.isAudioPlaying}
         onToggle={handleTogglePlayback}
         onClose={() => setPlayerOpen(false)}

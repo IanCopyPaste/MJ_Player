@@ -136,19 +136,33 @@
 }
 
 .album-chevron {
-  color: #d4af37;
-  font-size: 1.5rem;
-  line-height: 1;
-  transform: rotate(0deg);
-  transition: transform 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
 }
 
-.album-dropdown.is-open .album-chevron {
-  transform: rotate(180deg);
+.album-chevron img {
+  display: block;
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
 }
 
 .album-song-panel {
+  max-height: 0;
+  overflow: hidden;
+  padding: 0 18px 0 102px;
+  opacity: 0;
+  transition: max-height 0.35s ease, padding 0.35s ease, opacity 0.25s ease;
+}
+
+.album-song-panel.is-open {
+  max-height: 900px;
   padding: 0 18px 12px 102px;
+  opacity: 1;
 }
 
 .album-song-row {

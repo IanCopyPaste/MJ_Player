@@ -11,6 +11,8 @@ import MusicAndMeCover from './assets/AlbumImages/MusicAndMe.jpg';
 import OffTheWallCover from './assets/AlbumImages/OffTheWall.jpg';
 import ThrillerCover from './assets/AlbumImages/Thriller.jpg';
 import playMusicIcon from './assets/PlayerAssets/playMusic.png';
+import dropDownIcon from './assets/AlbumPageImages/DropDown.png';
+import dropUpIcon from './assets/AlbumPageImages/DropUp.png';
 import './css/AlbumsPage.css';
 
 const albumCovers = {
@@ -103,10 +105,16 @@ function AlbumsPage({ songs, player, onSelectTrack, setPlayerOpen }) {
                                             <span className="album-dropdown-meta">Michael Jackson · {album.releaseDate}</span>
                                         </span>
                                         <span className="album-song-count">{album.songs.length} songs</span>
-                                        <span className="album-chevron" aria-hidden="true">⌄</span>
+                                        <span className="album-chevron" aria-hidden="true">
+                                            <img src={isOpen ? dropDownIcon : dropUpIcon} alt="" />
+                                        </span>
                                     </button>
 
-                                    <div className="album-song-panel" id={`songs-${index}`} hidden={!isOpen}>
+                                    <div
+                                        className={`album-song-panel ${isOpen ? 'is-open' : ''}`}
+                                        id={`songs-${index}`}
+                                        aria-hidden={!isOpen}
+                                    >
                                         {album.songs.map(({ song, index: songIndex }, songNumber) => (
                                             <button
                                                 type="button"
