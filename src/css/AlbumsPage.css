@@ -188,7 +188,7 @@
   background: rgba(212, 175, 55, 0.05);
 }
 
-.album-dropdown-trigger img {
+.album-dropdown-trigger > img {
   display: block;
   width: 80px;
   height: 80px;
@@ -199,7 +199,7 @@
   transition: border-color 0.25s ease, box-shadow 0.25s ease;
 }
 
-.album-dropdown-trigger:hover img {
+.album-dropdown-trigger:hover > img {
   border-color: rgba(212, 175, 55, 0.4);
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
 }
@@ -372,7 +372,11 @@
 
   .albums-hero {
     padding-top: 90px;
-    padding-bottom: 40px;
+    padding-bottom: 10px;
+  }
+
+  .albums-list-section {
+    padding-top: 20px;
   }
 
   .album-dropdown-trigger {
@@ -381,7 +385,7 @@
     padding: 12px 14px 12px 12px;
   }
 
-  .album-dropdown-trigger img {
+  .album-dropdown-trigger > img {
     width: 62px;
     height: 62px;
   }
