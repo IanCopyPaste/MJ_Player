@@ -1,6 +1,6 @@
 # 🎵 MJ Player
 
-A tribute web application dedicated to the King of Pop — **Michael Jackson**. Browse his discography, explore his legacy, and listen to tracks from 9 iconic albums — all wrapped in a premium dark-and-gold interface.
+A tribute web application dedicated to the King of Pop **Michael Jackson**. Browse his discography, explore his legacy, and listen to tracks from 9 iconic albums all wrapped in a premium dark-and-gold interface.
 
 **[Live Demo →](https://github.com/IanCopyPaste/MJ_Player)**
 
