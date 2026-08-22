@@ -1,11 +1,18 @@
 import { useEffect, useRef, useState } from 'react';
-import { Routes, Route } from 'react-router';
+import { Routes, Route, useLocation } from 'react-router';
 import './css/App.css';
 import HomePage from './HomePage.jsx';
 import AlbumsPage from './AlbumsPage.jsx';
 import PlayerModal from './components/PlayerModal.jsx';
 import songs from '../songs.js'
 
+function ScrollToTop() {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [pathname]);
+  return null;
+}
 
 function App() {
   const audioRef = useRef(null);
@@ -133,6 +140,7 @@ function App() {
 
   return (
     <>
+      <ScrollToTop />
       <audio ref={audioRef} className="audio-player" preload="metadata" />
 
       <PlayerModal

@@ -78,15 +78,15 @@ function PlayerModal({
     return (
         <div className={`music-modal-backdrop ${isOpen ? 'is-open' : 'is-closing'}`}>
             <div className="music-modal" role="dialog" aria-modal="true">
+                <button type="button" className="music-modal-close" onClick={onClose} aria-label="Close player">
+                    ×
+                </button>
+
                 <div className="music-modal-art">
                     <img key={albumCover} src={albumCover} alt={`${title || 'Michael Jackson'} album cover`} />
                 </div>
 
                 <div className="music-modal-content">
-                    <button type="button" className="music-modal-close" onClick={onClose} aria-label="Close player">
-                        ×
-                    </button>
-
                     <div className="music-modal-header">
                         <div className="music-modal-info">
                             <p className="music-modal-label">Now playing</p>
