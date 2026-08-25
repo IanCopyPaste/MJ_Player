@@ -1,6 +1,6 @@
 import './css/Footer.css';
 
-const githubUrl = 'https://github.com/IanCopyPaste';
+const githubUrl = 'https://github.com/IanCopyPaste/MJ_Player';
 
 function Footer() {
   return (
