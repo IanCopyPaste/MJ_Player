@@ -1,0 +1,143 @@
+.legacy-page {
+    min-height: 100vh;
+    background-color: #080808;
+    color: #f5f5f5;
+    padding-bottom: 80px;
+}
+
+/* HERO SECTION */
+.legacy-hero {
+    position: relative;
+    width: 100%;
+    height: 70vh;
+    min-height: 500px;
+    background-size: cover;
+    background-position: center top;
+    background-attachment: fixed; /* Parallax effect */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.legacy-hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(8,8,8,0.4) 0%, #080808 100%);
+    z-index: 1;
+}
+
+.legacy-hero-content {
+    position: relative;
+    z-index: 2;
+    padding: 0 20px;
+    animation: fade-in-up 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.legacy-hero-content .eyebrow {
+    color: #a0a0a0;
+    font-size: 1.2rem;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+
+.legacy-hero-content h1 {
+    font-size: clamp(3rem, 6vw, 6rem);
+    font-weight: 800;
+    margin: 0;
+    background: linear-gradient(135deg, #fff, #888);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 10px 30px rgba(0,0,0,0.8);
+}
+
+/* INFLUENCE SECTION */
+.legacy-influence {
+    padding: 80px 20px;
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.legacy-influence-content h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 30px;
+}
+
+.legacy-influence-content p {
+    font-size: 1.25rem;
+    line-height: 1.8;
+    color: #b0b0b0;
+    margin-bottom: 24px;
+}
+
+/* MOVIE SECTION */
+.movie-section {
+    padding: 100px 5%;
+    max-width: 1400px;
+    margin: 0 auto;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.movie-section-header {
+    text-align: center;
+    margin-bottom: 60px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.movie-section-header .eyebrow {
+    color: #d4af37;
+    font-size: 1rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    font-weight: 600;
+}
+
+.movie-section-header h2 {
+    font-size: 3.5rem;
+    font-weight: 800;
+    margin: 0 0 24px;
+    color: #fff;
+}
+
+.movie-section-header p {
+    font-size: 1.15rem;
+    line-height: 1.6;
+    color: #a0a0a0;
+}
+
+/* MOVIE GALLERY */
+.movie-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 30px;
+}
+
+.movie-gallery-item {
+    position: relative;
+    border-radius: 16px;
+    overflow: hidden;
+    aspect-ratio: 3/4;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+    background: #111;
+}
+
+.movie-gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.movie-gallery-item:hover img {
+    transform: scale(1.08);
+}
