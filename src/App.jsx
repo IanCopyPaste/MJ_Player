@@ -3,6 +3,8 @@ import { Routes, Route, useLocation } from 'react-router';
 import './css/App.css';
 import HomePage from './HomePage.jsx';
 import AlbumsPage from './AlbumsPage.jsx';
+import AwardsPage from './AwardsPage.jsx';
+import LegacyPage from './LegacyPage.jsx';
 import PlayerModal from './components/PlayerModal.jsx';
 import songs from '../songs.js'
 
@@ -180,6 +182,24 @@ function App() {
               songs={songs}
               player={playerState}
               onSelectTrack={selectTrack}
+              setPlayerOpen={setPlayerOpen}
+            />
+          }
+        />
+        <Route
+          path="awards"
+          element={
+            <AwardsPage
+              player={playerState}
+              setPlayerOpen={setPlayerOpen}
+            />
+          }
+        />
+        <Route
+          path="legacy"
+          element={
+            <LegacyPage
+              player={playerState}
               setPlayerOpen={setPlayerOpen}
             />
           }
