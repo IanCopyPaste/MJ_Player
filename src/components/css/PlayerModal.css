@@ -39,8 +39,15 @@
 }
 
 @keyframes album-art-in {
-  from { opacity: 0; transform: scale(1.03); }
-  to { opacity: 1; transform: scale(1); }
+  from {
+    opacity: 0;
+    transform: scale(1.03);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 .music-modal-content {
@@ -53,23 +60,47 @@
 }
 
 @keyframes player-backdrop-in {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes player-backdrop-out {
-  from { opacity: 1; }
-  to { opacity: 0; }
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
 }
 
 @keyframes player-modal-in {
-  from { opacity: 0; transform: translateY(14px) scale(0.96); }
-  to { opacity: 1; transform: translateY(0) scale(1); }
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.96);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
 @keyframes player-modal-out {
-  from { opacity: 1; transform: translateY(0) scale(1); }
-  to { opacity: 0; transform: translateY(10px) scale(0.96); }
+  from {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+
+  to {
+    opacity: 0;
+    transform: translateY(10px) scale(0.96);
+  }
 }
 
 .music-modal-close {
@@ -251,4 +282,18 @@
   height: 0 !important;
   opacity: 0 !important;
   pointer-events: none !important;
+}
+
+@media (max-width: 768px) {
+  .music-modal-backdrop {
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+  }
+
+  .music-modal {
+    transform-origin: bottom center;
+    /* Optional: you might want it slightly wider on phone if 320px feels too small, 
+       but keeping the original width ensures consistency */
+  }
 }
