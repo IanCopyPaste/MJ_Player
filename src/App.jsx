@@ -58,14 +58,12 @@ function App() {
     audio.addEventListener('timeupdate', syncTime);
     audio.addEventListener('play', syncPlayback);
     audio.addEventListener('pause', syncPlayback);
-    audio.addEventListener('ended', syncPlayback);
 
     return () => {
       audio.removeEventListener('loadedmetadata', syncMetadata);
       audio.removeEventListener('timeupdate', syncTime);
       audio.removeEventListener('play', syncPlayback);
       audio.removeEventListener('pause', syncPlayback);
-      audio.removeEventListener('ended', syncPlayback);
     };
   }, []);
 
@@ -141,7 +139,7 @@ function App() {
   return (
     <>
       <ScrollToTop />
-      <audio ref={audioRef} className="audio-player" preload="metadata" />
+      <audio ref={audioRef} className="audio-player" preload="metadata" onEnded={() => goToTrack(1)} />
 
       <PlayerModal
         isOpen={playerState.isOpen}
