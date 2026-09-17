@@ -16,7 +16,7 @@ import invincibleCover from './assets/AlbumImages/Invincible.jpg';
 import './css/HomePage.css';
 
 const typingWords = ['Legend', 'Performer', 'Icon'];
-const heroImages = [Mj_header5, Mj_header, Mj_header2, Mj_header3, Mj_header4];
+const heroImages = [Mj_header, Mj_header2, Mj_header3, Mj_header4, Mj_header5];
 const topAlbums = [
     { rank: '1st', title: 'Thriller', releaseDate: 'November 30, 1982', cover: thrillerCover },
     { rank: '2nd', title: 'Bad', releaseDate: 'August 31, 1987', cover: badCover },
